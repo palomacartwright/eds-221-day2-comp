@@ -1,0 +1,135 @@
+---
+title: "Making & Indexing Data in R"
+author: "Paloma Cartwright"
+date: "10/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Make some vectors and check them out 
+
+Creating a vector of different banana meals 
+```{r}
+
+banana <- c("split", "smoothie", "sundae", "milkshake")
+#Check the class: 
+class(banana)
+
+banana2 <- c("split", "smoothie", "sundae", "milkshake", 40)
+banana2
+class(banana2)
+
+banana3 <- c("split", TRUE, 5L, "sundae", "smoothie", "cereal")
+banana3 
+class(banana3)
+```
+
+Randomly exploring bananas 
+```{r}
+banana_size <- c(1.2, 4, 7, 3)
+banana_size 
+class(banana_size)
+typeof(banana_size)
+
+banana_years <- c(4L, 2L, 6L)
+banana_years
+class(banana_years)
+typeof(banana_years)
+# Integers are always the same type 
+
+is.character(banana)
+# you can also use is.numeric(), is.factor(), is.double() to check these things 
+```
+
+Create a vectors of the additions to each banana item to make the meals. 
+
+```{r}
+banana_additions <- c(split = "ice cream",
+                      smoothie = "strawberries", 
+                      sundae = "caramel", 
+                      milkshake = "milk")
+
+banana_additions
+class(banana_additions)
+
+# Both of these following lines are the same thing, but the second one is a lot more applicable because you need the exact name. 
+banana_additions[2]
+banana_additions["smoothie"]
+
+#Create an object using the information from the vector 
+banana_smoothie <- banana_additions[2]
+banana_smoothie
+```
+
+Creating a new vector 
+
+```{r}
+fruit_colors <- c("green", "red", "yellow", "purple", "peach", "orange", "black", "white")
+
+# elements 2 to 5 in the vector 
+fruit_colors[2:5]
+
+i <- 3
+fruit_colors[i]
+
+i <- c(1, 5, 7)
+fruit_colors[i]
+
+fruit_colors[3] <- "magenta"
+fruit_colors
+
+```
+
+## Lists in R 
+
+The main difference between lists and vectors is that lists can have different types, whereas vectors are homogeneous. 
+
+```{r}
+turtle <- list("green", 
+                c(5, 7, 3), 
+                seq(from = 0, to = 50, by = 0.5), 
+                300L) 
+                #("loggerhead", 5.4, TRUE, 200L), 
+                #("hawksbill", 7.9, FALSE, 500L))
+turtle
+turtle[[1]]  # returns the contents of that piece of the list
+turtle[1]    # returns the list itself. 
+```
+
+
+```{r}
+sharks <- list(species = c("hammerhead", "nurse", "reef"),
+               age = c(10.3, 5.9, 8.4), 
+               habitat = c("ocean", "sea floor", "coral reefs"))
+sharks
+
+shark_age <- sharks[[3]]
+shark_age
+
+shark_species <- sharks$species
+shark_species
+```
+
+## Making a Data Frame in R 
+
+```{r}
+turtles <- data.frame(species = c("green", "hawksbill", "loggerhead"), 
+                      avg_adult_mass = c(145, 206, 342), 
+                      has_FPV = c(FALSE, FALSE, FALSE))
+turtles
+
+class(turtles)
+class(turtles$has_FPV)
+
+turtles$species
+
+# turtles[,] does the same thing as below 
+turtles[, 1]
+
+```
+
